@@ -77,6 +77,32 @@ function getGameGraph() {
 type GameData = {
   blackMistakesTotal: number
   whiteMistakesTotal: number
+  blackMistakesNormalTotal: number
+  whiteMistakesNormalTotal: number
+  blackMistakesBlunderTotal: number
+  whiteMistakesBlunderTotal: number
+}
+
+function componentToHex(c: number) {
+  const hex = c.toString(16)
+  return hex.length == 1 ? "0" + hex : hex
+}
+
+function rgbToHex(s: string) {
+  const parenthesesRegexp = /\(([^)]+)\)/
+
+  const [r, g, b] = parenthesesRegexp
+    .exec(s)![1]
+    .replaceAll(" ", "")
+    .split(",")
+    .map((n) => parseInt(n))
+
+  return (
+    "#" +
+    componentToHex(r) +
+    componentToHex(g) +
+    componentToHex(b)
+  )
 }
 
 function getGameData() {
@@ -97,22 +123,50 @@ function getGameData() {
       [...m.classList].includes("white")
     )
 
-    const mistakesRadii = [
-      ...new Set(
-        mistakes.map((m) =>
-          parseFloat(m.getAttribute("r") ?? "0")
-        )
-      ),
+    const root = document.documentElement
+    const rootStyle = getComputedStyle(root)
+    const mistakeColors = [
+      "#cf715e",
+      rootStyle.getPropertyValue("--mistake"),
+      rootStyle.getPropertyValue("--mistake-on-black"),
+      rootStyle.getPropertyValue("--mistake-on-white"),
     ]
-    mistakesRadii.sort()
-    console.log(mistakesRadii)
+    const blunderColors = [
+      rootStyle.getPropertyValue("--blunder"),
+      rootStyle.getPropertyValue("--blunder-on-black"),
+      rootStyle.getPropertyValue("--blunder-on-white"),
+    ]
 
-    const smallMistakeRadius = mistakesRadii[0]
-    const bigMistakeRadius = mistakesRadii[1]
+    const blackMistakesNormal = blackMistakes.filter((m) =>
+      mistakeColors.includes(
+        rgbToHex(getComputedStyle(m).fill)
+      )
+    )
+    const whiteMistakesNormal = whiteMistakes.filter((m) =>
+      mistakeColors.includes(
+        rgbToHex(getComputedStyle(m).fill)
+      )
+    )
+    const blackMistakesBlunder = blackMistakes.filter((m) =>
+      blunderColors.includes(
+        rgbToHex(getComputedStyle(m).fill)
+      )
+    )
+    const whiteMistakesBlunder = whiteMistakes.filter((m) =>
+      blunderColors.includes(
+        rgbToHex(getComputedStyle(m).fill)
+      )
+    )
 
     return <GameData>{
       blackMistakesTotal: blackMistakes.length,
       whiteMistakesTotal: whiteMistakes.length,
+      blackMistakesNormalTotal: blackMistakesNormal.length,
+      whiteMistakesNormalTotal: whiteMistakesNormal.length,
+      blackMistakesBlunderTotal:
+        blackMistakesBlunder.length,
+      whiteMistakesBlunderTotal:
+        whiteMistakesBlunder.length,
     }
   }
 }
@@ -133,20 +187,37 @@ function addGameStatistics() {
     gameData
   ) {
     statisticsContainer.innerHTML = /* html */ `
+      <style>
+        td, th {
+          padding-left: 10px;
+          text-align: center;
+        }
+      </style>
+
       <table>
         <thead>
           <tr>
-            <th colspan="2">Total Mistakes</th>
+            <th colspan="4">Total Mistakes</th>
+          </tr>
+          <tr>
+            <th>Color</th>
+            <th>Total</th>
+            <th>Normal</th>
+            <th>Blunder</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>Black</td>
             <td>${gameData.blackMistakesTotal}</td>
+            <td>${gameData.blackMistakesNormalTotal}</td>
+            <td>${gameData.blackMistakesBlunderTotal}</td>
           </tr>
           <tr>
             <td>White</td>
             <td>${gameData.whiteMistakesTotal}</td>
+            <td>${gameData.whiteMistakesNormalTotal}</td>
+            <td>${gameData.whiteMistakesBlunderTotal}</td>
           </tr>
         </tbody>
       </table>

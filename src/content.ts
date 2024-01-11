@@ -8,6 +8,10 @@ setInterval(() => {
   addGameStatistics()
 }, 10)
 
+document.body.onload = () => {
+  colorWinnerName()
+}
+
 //----------------------------------------------------------
 // 2. Clear Nav Icons
 
@@ -226,7 +230,26 @@ function addGameStatistics() {
 }
 
 //----------------------------------------------------------
-// 3. Collapse SVG Boards
+// 3. Color Winner Name
+
+/**
+ * I think having the winner's name in bold is just too
+ * subtle. I don't know if the current behavior I added is
+ * best, but something with colors should make it easier to
+ * identify who the winner is.
+ */
+function colorWinnerName() {
+  document.body.innerHTML += /* html */ `
+    <style>
+      .player-name.winner, .player-rank.winner {
+        color: #338c33;
+      }
+    </style>
+  `
+}
+
+//----------------------------------------------------------
+// 4. Collapse SVG Boards
 
 // I thought the infinite scroll crashing was due to them
 // implementing gobans with SVGs instead of `<canvas>`es.

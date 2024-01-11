@@ -11,6 +11,7 @@ A browser extension for [AI Sensei](https://ai-sensei.com)
 - [ ] Add games statistics to the games page.
   - [x] Add mistake statistics to the game page
 - [x] Change the winner's name color to make it easier to identify who won.
+- [ ] Add option for numbering moves on the preview.
 
 ## References
 

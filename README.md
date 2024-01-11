@@ -13,6 +13,14 @@ A browser extension for [AI Sensei](https://ai-sensei.com)
 - [x] Change the winner's name color to make it easier to identify who won.
 - [ ] Add option for numbering moves on the preview.
 
+## Development
+
+## How to Build Locally
+
+1. `npm i`
+2. `npm run dev`
+3. Load the unpacked folder as an extension on your (Chromium) browser.
+
 ## References
 
 - [AI Sensei](https://ai-sensei.com)

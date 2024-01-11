@@ -1,0 +1,30 @@
+{
+    "include": [
+        "src",
+    ],
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",
+        "lib": [
+            "ESNext",
+            "DOM",
+            "DOM.Iterable"
+        ],
+        /****************/
+        /* Bundler Mode */
+        /****************/
+        "moduleResolution": "bundler",
+        "allowImportingTsExtensions": true,
+        "resolveJsonModule": true,
+        "isolatedModules": false,
+        "experimentalDecorators": true,
+        "noEmit": true,
+        /***********/
+        /* Linting */
+        /***********/
+        "strict": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noFallthroughCasesInSwitch": true
+    },
+}

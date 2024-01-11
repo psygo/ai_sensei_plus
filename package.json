@@ -1,0 +1,32 @@
+{
+  "name": "ai_sensei_plus",
+  "version": "0.0.1",
+  "description": "Extra behavior to hopefully improve AI Sensei",
+  "author": "Philippe Fanaro",
+  "contributors": [
+    {
+      "name": "Philippe Fanaro",
+      "email": "philippefanaro@gmail.com"
+    }
+  ],
+  "keywords": [
+    "Go",
+    "碁",
+    "Baduk",
+    "바둑",
+    "Weiqi",
+    "围棋",
+    "Igo",
+    "囲碁",
+    "AI"
+  ],
+  "license": "ISC",
+  "main": "content.ts",
+  "type": "module",
+  "scripts": {},
+  "devDependencies": {
+    "@crxjs/vite-plugin": "^1.0.14",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.11"
+  }
+}

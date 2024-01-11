@@ -1,0 +1,20 @@
+{
+    "manifest_version": 3,
+    "name": "AI Sensei Plus",
+    "author": "Philippe Fanaro",
+    "version": "0.0.2",
+    "description": "Extra behavior to hopefully improve AI Sensei",
+    "action": {
+        "default_popup": "index.html"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://ai-sensei.com/*"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ]
+}

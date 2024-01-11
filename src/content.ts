@@ -97,6 +97,19 @@ function getGameData() {
       [...m.classList].includes("white")
     )
 
+    const mistakesRadii = [
+      ...new Set(
+        mistakes.map((m) =>
+          parseFloat(m.getAttribute("r") ?? "0")
+        )
+      ),
+    ]
+    mistakesRadii.sort()
+    console.log(mistakesRadii)
+
+    const smallMistakeRadius = mistakesRadii[0]
+    const bigMistakeRadius = mistakesRadii[1]
+
     return <GameData>{
       blackMistakesTotal: blackMistakes.length,
       whiteMistakesTotal: whiteMistakes.length,

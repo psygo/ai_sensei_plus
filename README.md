@@ -4,6 +4,8 @@ A browser extension for [AI Sensei](https://ai-sensei.com)
 
 ## Features
 
+- [ ] Change the tab's title to have the name of the players
+- [ ] Put the tags on the game page.
 - [x] Eliminate red notification markers.
   - [ ] Create an option setting for opting out of this one.
 - [ ] Collapse all SVG gobans on the games page, so we can get normal performance back.
